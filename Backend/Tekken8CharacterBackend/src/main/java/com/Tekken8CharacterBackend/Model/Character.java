@@ -1,8 +1,11 @@
 package com.Tekken8CharacterBackend.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Character {
@@ -10,11 +13,18 @@ public class Character {
 @Id
 @GeneratedValue
 private Long id;
-private String name;
+@Column(name = "Character_Name")
+private String characterName;
+@Column(name="Fight_Style")
 private String fightStyle;
+@Column(name ="Height")
 private Long height;
+@Column(name = "Weight")
 private Long weight;
 
+@OneToMany(mappedBy = "character")
+@Fetch(value = FetchMode.SELECT)
+private List<CharacterMove> moveList = new ArrayList<>();
     public Long getId() {
         return id;
     }
@@ -23,12 +33,12 @@ private Long weight;
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCharacterName() {
+        return characterName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 
     public String getFightStyle() {
