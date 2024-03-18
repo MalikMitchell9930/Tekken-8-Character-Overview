@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 @Entity
 public class CharacterMove {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long moveId;
-    @ManyToOne
-    @JoinColumn(name ="character_id")
-    private Character character;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name ="tekken_character_id")
+    private TekkenCharacter tekkenCharacter;
     @Column(name = "Move_Name")
     private String moveName;
     @Column(name = "Annotation")
@@ -33,12 +33,12 @@ public class CharacterMove {
         this.moveId = moveId;
     }
 
-    public Character getCharacter() {
-        return character;
+    public TekkenCharacter getCharacter() {
+        return tekkenCharacter;
     }
 
-    public void setCharacter(Character character) {
-        this.character = character;
+    public void setCharacter(TekkenCharacter tekkenCharacter) {
+        this.tekkenCharacter = tekkenCharacter;
     }
 
     public String getMoveName() {

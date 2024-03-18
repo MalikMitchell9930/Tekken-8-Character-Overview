@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Character {
+public class TekkenCharacter {
 
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 @Column(name = "Character_Name")
-private String characterName;
+private String tekkenCharacterName;
 @Column(name="Fight_Style")
 private String fightStyle;
 @Column(name ="Height")
@@ -22,7 +22,7 @@ private Long height;
 @Column(name = "Weight")
 private Long weight;
 
-@OneToMany(mappedBy = "character")
+@OneToMany(mappedBy = "tekkenCharacter",cascade = CascadeType.ALL)
 @Fetch(value = FetchMode.SELECT)
 private List<CharacterMove> moveList = new ArrayList<>();
     public Long getId() {
@@ -33,12 +33,12 @@ private List<CharacterMove> moveList = new ArrayList<>();
         this.id = id;
     }
 
-    public String getCharacterName() {
-        return characterName;
+    public String getTekkenCharacterName() {
+        return tekkenCharacterName;
     }
 
-    public void setCharacterName(String characterName) {
-        this.characterName = characterName;
+    public void setTekkenCharacterName(String tekkenCharacterName) {
+        this.tekkenCharacterName = tekkenCharacterName;
     }
 
     public String getFightStyle() {
