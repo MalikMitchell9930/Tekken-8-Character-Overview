@@ -22,6 +22,12 @@ private Long height;
 @Column(name = "Weight")
 private Long weight;
 
+@Column(name = "Overview")
+private String overview;
+
+@Column(name = "Nationality")
+private String nationality;
+
 @OneToMany(mappedBy = "tekkenCharacter",cascade = CascadeType.ALL)
 @Fetch(value = FetchMode.SELECT)
 private List<CharacterMove> moveList = new ArrayList<>();
@@ -63,5 +69,21 @@ private List<CharacterMove> moveList = new ArrayList<>();
 
     public void setWeight(Long weight) {
         this.weight = weight;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 }

@@ -8,7 +8,7 @@ public class CharacterMove {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long moveId;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="tekken_character_id")
+    @JoinColumn(name ="tekkenCharacter_id", referencedColumnName = "id")
     private TekkenCharacter tekkenCharacter;
     @Column(name = "Move_Name")
     private String moveName;
