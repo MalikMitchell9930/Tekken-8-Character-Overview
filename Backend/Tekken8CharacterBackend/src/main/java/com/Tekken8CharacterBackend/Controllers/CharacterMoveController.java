@@ -22,7 +22,7 @@ public class CharacterMoveController {
     private CharacterMoveRepository characterMoveRepository;
 
     @PostMapping("/characters/{tekkenCharacter_id}/moves")
-    CharacterMove newCharacterMove(@PathVariable(value = "tekkenCharacter_id") Long tekkenCharacter_id,@RequestBody CharacterMove newMoveRequest){
+    CharacterMove newCharacterMove(@PathVariable("tekkenCharacter_id") Long tekkenCharacter_id,@RequestBody CharacterMove newMoveRequest){
         CharacterMove characterMove = characterRepo.findById(tekkenCharacter_id).map(tekkenCharacter -> {
             newMoveRequest.setCharacter(tekkenCharacter);
             return newMoveRequest;
@@ -41,7 +41,7 @@ public class CharacterMoveController {
     }
 
     @PutMapping("/moves/{id}")
-    CharacterMove updateCharacterMove(@PathVariable("id") Long id, CharacterMove characterMove){
+    CharacterMove updateCharacterMove(@PathVariable("id") Long id, @RequestBody CharacterMove characterMove){
         CharacterMove updatedCharacterMove = characterMoveRepository.findById(id)
                 .orElseThrow(()-> new CharacterMoveNotFoundException(id));
         updatedCharacterMove.setCharacter(characterMove.getCharacter());
