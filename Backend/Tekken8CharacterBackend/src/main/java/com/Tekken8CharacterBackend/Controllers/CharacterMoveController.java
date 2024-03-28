@@ -35,7 +35,7 @@ public class CharacterMoveController {
        return characterMoveRepository.findAll();
     }
 
-    @GetMapping("/characters/{id}/moves")
+    @GetMapping("/characters/{tekkenCharacter_id}/moves")
     List<CharacterMove> getAllCharacterMoves(Long tekkenCharacter_id){
         return characterMoveRepository.getAllByTekkenCharacterId(tekkenCharacter_id);
     }
