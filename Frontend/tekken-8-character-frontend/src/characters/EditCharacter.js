@@ -7,7 +7,7 @@ export default function EditCharacter() {
     <div>
         <Container>
         <h2 className="text-center m-4">
-            Edit Move
+            Edit Character
             </h2>
         </Container>
     </div>

@@ -17,7 +17,9 @@ export default function HomePage() {
     <div>
        
         <Container>
-          <h2 className="text-center m-4">Characters</h2>
+          <h2 className="text-center m-4">
+            Characters
+            </h2>
             <div className="py-4">
                 <table className="table table-bordered border-rounded table-dark table-stripped">
                     <thead>
