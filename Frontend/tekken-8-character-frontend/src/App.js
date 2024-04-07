@@ -20,7 +20,7 @@ function App() {
         <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/addCharacter" element={<AddCharacter />} />
-        <Route exact path="/editCaracter/:id" element={<EditCharacter />} />
+        <Route exact path="/editCharacter/:id" element={<EditCharacter />} />
         <Route exact path="/viewCharacter/:id" element={<ViewCharacter />} />
         <Route exact path="/addCharacterMove" element={<AddCharacterMove />} />
         <Route exact path="/editCharacterMove" element={<EditCharacterMove />} />

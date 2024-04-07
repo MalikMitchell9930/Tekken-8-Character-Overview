@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
 
     const [characters , setCharacters] =useState([])
+
+    const{id} = useParams();
 
     useEffect(()=>{
         loadCharacters()
@@ -35,7 +39,12 @@ export default function HomePage() {
                         {
                             characters.map((character,index)=>(
                                 <tr>
-                                    <th scope ="row"key={character.tekkenCharacterName}>{character.tekkenCharacterName} </th>
+                                    <Link component="td"
+                                     scope ="row"
+                                     key={character.tekkenCharacterName}
+                                     to={`/viewCharacter/${character.id}`}>
+                                        {character.tekkenCharacterName}
+                                    </Link>
                                     <td>{character.fightStyle}</td>
                                     <td>{character.height}</td>
                                     <td>{character.weight}</td>
