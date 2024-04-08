@@ -22,8 +22,8 @@ function App() {
         <Route exact path="/addCharacter" element={<AddCharacter />} />
         <Route exact path="/editCharacter/:id" element={<EditCharacter />} />
         <Route exact path="/viewCharacter/:id" element={<ViewCharacter />} />
-        <Route exact path="/addCharacterMove" element={<AddCharacterMove />} />
-        <Route exact path="/editCharacterMove" element={<EditCharacterMove />} />
+        <Route exact path="/addCharacterMove/:id" element={<AddCharacterMove />} />
+        <Route exact path="/editCharacterMove/:id" element={<EditCharacterMove />} />
         </Routes>
         </div>
       </Router>

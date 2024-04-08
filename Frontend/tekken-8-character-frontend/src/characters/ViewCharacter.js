@@ -7,6 +7,21 @@ import { Link,useNavigate, useParams } from "react-router-dom";
 
 export default function ViewCharacter() {
     let navigate = useNavigate();
+    const { id } = useParams();
+    const {tekkenCharacterId} = useParams();
+
+    
+    const [characterMoves , setCharacterMoves] =useState([])
+
+    useEffect(()=>{
+        loadCharacterMoves()
+    },[]);
+    
+    const loadCharacterMoves=async()=>{
+        const result = await axios.get(`http://localhost:8080/overview/characters/${id}/moves`)
+        setCharacterMoves(result.data);
+    }
+    
     const [character, setCharacter] = useState({
         tekkenCharacterName: "",
         fightStyle: "",
@@ -15,8 +30,6 @@ export default function ViewCharacter() {
         nationality: "",
         overview: "",
       });
-    
-      const { id } = useParams();
     
       useEffect(() => {
         loadCharacter();
@@ -68,13 +81,36 @@ export default function ViewCharacter() {
                         <th scope="col">On Hit</th>
                         <th scope="col">On Block</th>
                         <th scope="col">On Counter Hit</th>
+                        <th scopre="col">Action</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        {
+                            characterMoves.map((characterMove,index)=>(
+                                <tr>
+                                    <td>{characterMove.moveName}</td>
+                                    <td>{characterMove.annotation}</td>
+                                    <td>{characterMove.hitLevel}</td>
+                                    <td>{characterMove.startupFrames}</td>
+                                    <td>{characterMove.onHit}</td>
+                                    <td>{characterMove.onBlock}</td>
+                                    <td>{characterMove.onCounterHit}</td>
+                                    <td>
+                                        <Link
+                                        to={`/editCharacterMove/${characterMove.id}`}
+                                        >
+                                            View
+                                        </Link>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
                 </table>
             </div>
             <Link 
             className="btn text-light bg-dark"
-            to = {"/addCharacterMove"}
+            to = {`/addCharacterMove/${character.id}`}
             >
                 Add Character Move
             </Link>
