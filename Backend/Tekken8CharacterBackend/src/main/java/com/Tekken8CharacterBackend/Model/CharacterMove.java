@@ -6,9 +6,9 @@ import jakarta.persistence.*;
 public class CharacterMove {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long moveId;
+    private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="tekkenCharacter_id", referencedColumnName = "id")
+    @JoinColumn(name ="tekkenCharacter_id")
     private TekkenCharacter tekkenCharacter;
     @Column(name = "Move_Name")
     private String moveName;
@@ -25,12 +25,12 @@ public class CharacterMove {
     @Column(name = "On_Counter_Hit")
     private String onCounterHit;
 
-    public Long getMoveId() {
-        return moveId;
+    public Long getId() {
+        return id;
     }
 
-    public void setMoveId(Long moveId) {
-        this.moveId = moveId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public TekkenCharacter getCharacter() {

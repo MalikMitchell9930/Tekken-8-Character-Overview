@@ -28,7 +28,7 @@ private String overview;
 @Column(name = "Nationality")
 private String nationality;
 
-@OneToMany(mappedBy = "tekkenCharacter",cascade = CascadeType.ALL)
+@OneToMany(mappedBy = "tekkenCharacter",cascade = CascadeType.ALL, orphanRemoval = true)
 @Fetch(value = FetchMode.SELECT)
 private List<CharacterMove> moveList = new ArrayList<>();
     public Long getId() {

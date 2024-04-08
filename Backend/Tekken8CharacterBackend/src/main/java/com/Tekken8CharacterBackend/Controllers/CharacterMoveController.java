@@ -21,12 +21,12 @@ public class CharacterMoveController {
     @Autowired
     private CharacterMoveRepository characterMoveRepository;
 
-    @PostMapping("/characters/{tekkenCharacter_id}/moves")
-    CharacterMove newCharacterMove(@PathVariable("tekkenCharacter_id") Long tekkenCharacter_id,@RequestBody CharacterMove newMoveRequest){
-        CharacterMove characterMove = characterRepo.findById(tekkenCharacter_id).map(tekkenCharacter -> {
+    @PostMapping("/characters/{tekkenCharacterId}/moves")
+    CharacterMove newCharacterMove(@PathVariable("tekkenCharacterId") Long tekkenCharacterId,@RequestBody CharacterMove newMoveRequest){
+        CharacterMove characterMove = characterRepo.findById(tekkenCharacterId).map(tekkenCharacter -> {
             newMoveRequest.setCharacter(tekkenCharacter);
             return newMoveRequest;
-        }).orElseThrow(() -> new CharacterNotFoundException(tekkenCharacter_id));
+        }).orElseThrow(() -> new CharacterNotFoundException(tekkenCharacterId));
         return characterMoveRepository.save(newMoveRequest);
     }
 
@@ -35,9 +35,15 @@ public class CharacterMoveController {
        return characterMoveRepository.findAll();
     }
 
-    @GetMapping("/characters/{tekkenCharacter_id}/moves")
-    List<CharacterMove> getAllCharacterMoves(Long tekkenCharacter_id){
-        return characterMoveRepository.getAllByTekkenCharacterId(tekkenCharacter_id);
+    @GetMapping("/characters/{tekkenCharacterId}/moves")
+    List<CharacterMove> getAllCharacterMoves(@PathVariable (value = "tekkenCharacterId") Long tekkenCharacterId){
+        return characterMoveRepository.getAllByTekkenCharacterId(tekkenCharacterId);
+    }
+
+    @GetMapping("/moves/{id}")
+    CharacterMove getCharacterMoveById(@PathVariable("id") Long id){
+        return characterMoveRepository.findById(id)
+                .orElseThrow(() -> new CharacterMoveNotFoundException(id));
     }
 
     @PutMapping("/moves/{id}")
